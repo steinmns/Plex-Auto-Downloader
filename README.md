@@ -16,14 +16,27 @@ show, etc)
   - logging mode button
 
 # Technical Specifications
-  - Base App written in Python
-  - Webapp written in: TBD
+  - Base application written in Python
+  - Webapp written in: *TBD*
 # Reference Documents
-  - qBittorrent WebUI API GitHub Repository
-    - https://github.com/qbittorrent/qBittorrent/wiki/WebUI-API-Documentation
-  - Node.js - JavaScript runtime
-    - https://nodejs.org/en/
-  - Open Port Check Tool
-    - https://www.canyouseeme.org/ 
-- qBittorrent API Python Wrapper
-    - https://github.com/rmartin16/qbittorrent-api.git
+  - [qBittorrent WebUI API GitHub Repository](https://github.com/qbittorrent/qBittorrent/wiki/WebUI-API-Documentation)
+  - [Node.js - JavaScript runtime](https://nodejs.org/en/)
+  - [Open Port Check Tool](https://www.canyouseeme.org/) 
+  - [qBittorrent API Python Wrapper](https://github.com/rmartin16/qbittorrent-api.git)
+
+# Change Log
+6/1/2019: 
+- Set-up qBittorrent external access through creating an “application”
+with the following settings:
+   - WAN Interface of “Ethernet_DEFAULT” (Due to being directly
+connected to router)
+   - Server IP of 192.168.200.26 (IPV4 address)
+   - Start & End ports as 55440
+   - TCP Protocol
+ - qBittorrent settings were configured as followed:
+   - IP address of 192.168.200.26 (Hard coded in case current IP
+dynamically changes)
+   - Port as 55440
+ - To access the remote qBittorrent WebUI use the following host:
+   - http://192.168.200.26:55440/ (for localhost)
+   - http://74.83.83.201:55440/ (for all outside connections)

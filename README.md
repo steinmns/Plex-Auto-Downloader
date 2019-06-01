@@ -20,9 +20,9 @@ show, etc)
   - Webapp written in: *TBD*
 # Reference Documents
   - [qBittorrent WebUI API GitHub Repository](https://github.com/qbittorrent/qBittorrent/wiki/WebUI-API-Documentation)
+  - [qBittorrent API Python Wrapper](https://github.com/rmartin16/qbittorrent-api.git)
   - [Node.js - JavaScript runtime](https://nodejs.org/en/)
   - [Open Port Check Tool](https://www.canyouseeme.org/) 
-  - [qBittorrent API Python Wrapper](https://github.com/rmartin16/qbittorrent-api.git)
 
 # Change Log
 6/1/2019: 

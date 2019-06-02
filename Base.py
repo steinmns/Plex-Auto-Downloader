@@ -9,7 +9,7 @@ from qbittorrentapi import Client
 version = '0.0.1'
 
 # Class to handle all of the qbittorrent api events
-class qbittorrent:
+class qbittorrent(object):
     # Initializing the client & passing in default arguments
     '''
         :param host: the address to access the WebUI interface, following a structure of 'externalip:port'
@@ -32,16 +32,28 @@ class qbittorrent:
         :param search_term: term or phrase to search for
         :param num_results: the number of results to show
     '''
-    def search(self, search_term, num_results=None):
-        # Begin a search with a specific search_term and use 'all' available plugins
-        search_id = client.search_start(pattern=search_term, plugins='all')
+    def search(self, search_term=None, num_results=5):
+        # Fetch and list the categories available to search for
+        categories = client.search_categories(plugin_name='all')
+        print('List of available categories:')
+        for i in categories:
+            if i != '':
+                print('- '+i)
+        # Begin a search with a specific search_term and use 'all' available plugins and store the search id
+        search_id = client.search_start(pattern=search_term, plugins='all', category='all')['id']
         # Debugging to see what the search_id is returned as
-        print('The search ID is: %s' % search_id)
+        print('\nSearch ID of search term "%s" is: %s' % (search_term, search_id))
         # Print the status of the search to make sure operation completed successfully
-        status = client.search_status(search_id)
-        print('The status of the search is: %s' % status)
-        # Store list of torrents and return the list
-        results = client.search_results(search_id=search_id, limit=num_results)
+        status = client.search_status(search_id=search_id)[0]
+        print('Status of search: %s' % status['status'])
+        # Attempting to let search continue until results populate
+        # while (status['total']) < 2:
+        #     if status['total'] == 1:
+        #         print('The status of the search is: %s' % status)
+        # Stops running the search
+        client.search_stop(search_id=search_id)
+        # Store result of search and return the list
+        results = client.search_results(search_id=search_id, limit=5, offset=None)['results']
         return(results)
 
 # Create an object 'qbit' of class qbittorrent
@@ -50,16 +62,21 @@ qbit = qbittorrent()
 client = qbit.init(verbose=True)
 
 # Testing the search function
-# currently returning 'None' - not sure why
-search_term = 'brrip'
-results = qbit.search(search_term)
-# Print out the JSON file of the search results
-print('The results are: %s' %results)
+search_term = 'no country for old men'
+results = qbit.search(search_term=search_term, num_results=50)
+# Raise an exception if results array is empty
+if results == []:
+    raise Exception('Empty array for "results"')
+else:
+    # Else print out the search results
+    print('The results are: %s\n' % results)
 
 # Print out the list of current completed torrents
-# Implemented to see if there was a response from the WebUI API call
-# torrent_list = client.torrents_info(status_filter='completed')
-# print(torrent_list)
+print('Completed torrents:')
+completed_torrent_list = client.torrents_info(status_filter='completed')
+# Iterate through the list of completed torrents and print the name of each one
+for torrent in range(0,len(completed_torrent_list)):
+    print('- '+completed_torrent_list[torrent]['name'])
 
 # Print out a list of methods contained in qbittorrentapi
 print()

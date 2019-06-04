@@ -4,6 +4,11 @@ GLOBAL_version = '0.0.1'
 
 # Class to handle all of the qbittorrent api events
 class qbittorrent(object):
+
+    # Default Constructor 
+    #def __init__(self):   UNCOMMENT ME WHEN CONSTRUCTOR ITEMS ARE READY TO BE ADDED
+        
+        
     # Initializing the client & passing in default arguments
     '''
         :param host: the address to access the WebUI interface, following a structure of 'externalip:port'

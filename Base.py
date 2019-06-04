@@ -4,15 +4,13 @@
 # Dependencies to install:
 # pip install qbittorrent-api
 
-import qbtAPI 
+import qbtAPI
 
 # Create an object 'qbit' of class qbittorrent
 qbit = qbtAPI.qbittorrent()
-
 # Testing the search function
 search_term = 'no country for old men'
-results = qbit.search(search_term=search_term, num_results=5)
-print('The results are: %s\n' % results)
+qbit.search(search_term=search_term, num_results=5)
 
 # Print out the list of current completed torrents
 # print('Completed torrents:')

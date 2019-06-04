@@ -1,3 +1,4 @@
+#%%
 from qbittorrentapi import Client
 # Version of this application
 GLOBAL_version = '0.0.1'
@@ -43,26 +44,31 @@ class qbittorrent(object):
         for i in categories:
             if i != '':
                 print('- '+i)
-        # Begin a search with a specific search_term and use 'all' available plugins and store the search id
-        search_id = self.client.search_start(pattern=search_term, plugins='all', category='all')['id']
+        # Begin a search_job with a specific search_term and use 'all' available plugins and categories
+        search_job = self.client.search.start(pattern=search_term, plugins='all', category='all')
+        # Parse for search_id
+        search_id = search_job['id']
         # Debugging to see what the search_id is returned as
         print('\nSearch ID of search term "%s" is: %s' % (search_term, search_id))
-        # Print the status of the search to make sure operation completed successfully
-        status = self.client.search_status(search_id=search_id)[0]
-        print('Status of search: %s' % status['status'])
-        # Attempting to let search continue until results populate
-        # while (status['total']) < 2:
-        #     if status['total'] == 1:
-        #         print('The status of the search is: %s' % status)
-        # Stops running the search
-        self.client.search_stop(search_id=search_id)
-        status = self.client.search_status(search_id=search_id)[0]
-        print('Status of search: %s' % status['status'])
-        # Store result of search and return the list
-        results = self.client.search_results(search_id=search_id, limit=5, offset=None)['results']
-        # Raise an exception if results array is empty
-        if results == []:
-            raise Exception('Empty array for "results"')
-        else:
-            # Else print out the search results            
-            return(results)
+        print(search_job.status()[0].status)
+        # Let search continue until results populate
+        while True:
+            # Stops running the search if status changes to 'Stopped'
+            if (search_job.status()[0].status) == 'Stopped':
+                break
+        # Print the search results
+        print(search_job.results())
+        # Delete the search results
+        search_job.delete()
+
+        # # Store result of search and return the list
+        # results = self.client.search_results(search_id=search_id, limit=5, offset=None)['results']
+
+        # # Raise an exception if results array is empty
+        # if results == []:
+        #     raise Exception('Empty array for "results"')
+        # else:
+        #     # Else print out the search results            
+        #     return(results)
+
+#%%

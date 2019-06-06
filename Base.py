@@ -1,10 +1,12 @@
 # Base of the Plex Auto Downloader Project
 # Nick Steinmetz and Minhaj Shahid - June 2019
+
 #%%
 # Dependencies to install:
 # pip install qbittorrent-api
-
 import qbtAPI
+import imp
+imp.reload(qbtAPI) #Makes sure that qbitAPI import is up to date so the kernel does not have to be restarted each time
 
 # Create an object 'qbit' of class qbittorrent
 qbit = qbtAPI.qbittorrent()

@@ -38,5 +38,5 @@ connected to router)
 dynamically changes)
    - Port as 55440
  - To access the remote qBittorrent WebUI use the following host:
-   - http://192.168.200.26:55440/ (for localhost)
-   - http://74.83.83.201:55440/ (for all outside connections)
+   - http://192.168.1.16:55440/ (for localhost)
+   - http://66.161.179.39:55440/ (for all outside connections)

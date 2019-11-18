@@ -42,4 +42,4 @@ dynamically changes)
    - http://66.161.179.39:55440/ (for all outside connections)
    
 11/18/19:
- -Switching the user interface design from bootstrap and angular to PyQT using QT Designer. 
+- Switching the user interface design from bootstrap and angular to PyQT using QT Designer 

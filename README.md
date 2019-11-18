@@ -1,5 +1,5 @@
 # Plex Auto Downloader
-Plex Auto Downloader is a tool that serves as a mediator between a front end designed in Bootstrap and a Python powered database backend for Plex media servers using an open source p2p program, qBittorrent. The front end will be built using Node.js and Bootstrap while the backend will be handled from an application built in Python using qBittorrent.
+Plex Auto Downloader is a tool that serves as a mediator between a front end designed in PyQT and a Python powered database backend for Plex media servers using an open source p2p program, qBittorrent. The front end will be built using PyQT while the backend will be handled from an application built in Python using qBittorrent.
 
 # Upcoming Features:
 - Automatically choose best torrent
@@ -17,11 +17,11 @@ show, etc)
 
 # Technical Specifications
   - Base application written in Python
-  - Webapp written in: *TBD*
+  - Interface will be designed with PyQT
+  
 # Reference Documents
   - [qBittorrent WebUI API GitHub Repository](https://github.com/qbittorrent/qBittorrent/wiki/WebUI-API-Documentation)
   - [qBittorrent API Python Wrapper](https://github.com/rmartin16/qbittorrent-api.git)
-  - [Node.js - JavaScript runtime](https://nodejs.org/en/)
   - [Open Port Check Tool](https://www.canyouseeme.org/) 
 
 # Change Log
@@ -40,3 +40,6 @@ dynamically changes)
  - To access the remote qBittorrent WebUI use the following host:
    - http://192.168.1.16:55440/ (for localhost)
    - http://66.161.179.39:55440/ (for all outside connections)
+   
+11/18/19:
+ -Switching the user interface design from bootstrap and angular to PyQT using QT Designer. 

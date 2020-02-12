@@ -10,7 +10,8 @@ qbit = qbittorrent()
 print('test')
 # Testing the search function
 search_term = 'no country for old men'
-qbit.search(search_term=search_term, num_results=5)
+results = qbit.search(search_term=search_term, num_results=5)
+#print(results)
 
 # Print out the list of current completed torrents
 # print('Completed torrents:')

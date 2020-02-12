@@ -1,4 +1,5 @@
 from qbittorrentapi import Client
+import time
 # Version of this application
 GLOBAL_version = '0.0.1'
 
@@ -11,7 +12,7 @@ class qbittorrent(object):
     def __init__(self):
         print('----------------------------- \n Plex Auto Downloader v%s \n----------------------------- \n' % GLOBAL_version)
         # Return application version, api version, and preferences if verbose output is desired
-        #print('---------------------------------------- \nqBittorrent application version: %s \nqBittorrent WebUI API version: %s \nUser logged in: %s \n----------------------------------------\n' % (self.client.app_version(), self.client.app_web_api_version(), (self.client.app_preferences().get('web_ui_username'))))
+        print('---------------------------------------- \nqBittorrent application version: %s \nqBittorrent WebUI API version: %s \nUser logged in: %s \n----------------------------------------\n' % (self.client.app_version(), self.client.app_web_api_version(), (self.client.app_preferences().get('web_ui_username'))))
 
     # Function to return the available plugins and/or update the current plugins
     '''
@@ -56,23 +57,18 @@ class qbittorrent(object):
 
         # Let search continue until results populate
         while True:
-            # Stops running the search if status changes to 'Stopped'
-            if (search_job.status()[0].status) == 'Stopped':
-                break
+            time.sleep(2)
+            break
 
-        # Print the search results
-        print(search_job.results())
+        # # Store result of search and return the list
+        results = search_job.results()
 
         # Delete the search results
         search_job.delete()
 
-        # # Store result of search and return the list
-        results = self.client.search_results(search_id=search_id, limit=5, offset=None)['results']
-        print(results)
-
-        # # Raise an exception if results array is empty
-        # if results == []:
-        #     raise Exception('Empty array for "results"')
-        # else:
-        #     # Else print out the search results            
-        #     return(results)
+        # Raise an exception if results array is empty
+        if results == []:
+            raise Exception('Empty array for "results"')
+        else:
+            # Else print out the search results            
+            return(results)

@@ -1,4 +1,3 @@
-#%%
 from qbittorrentapi import Client
 # Version of this application
 GLOBAL_version = '0.0.1'
@@ -12,7 +11,7 @@ class qbittorrent(object):
     def __init__(self):
         print('----------------------------- \n Plex Auto Downloader v%s \n----------------------------- \n' % GLOBAL_version)
         # Return application version, api version, and preferences if verbose output is desired
-        print('---------------------------------------- \nqBittorrent application version: %s \nqBittorrent WebUI API version: %s \nUser logged in: %s \n----------------------------------------\n' % (self.client.app_version(), self.client.app_web_api_version(), (self.client.app_preferences().get('web_ui_username'))))
+        #print('---------------------------------------- \nqBittorrent application version: %s \nqBittorrent WebUI API version: %s \nUser logged in: %s \n----------------------------------------\n' % (self.client.app_version(), self.client.app_web_api_version(), (self.client.app_preferences().get('web_ui_username'))))
 
     # Function to return the available plugins and/or update the current plugins
     '''
@@ -70,5 +69,3 @@ class qbittorrent(object):
         # else:
         #     # Else print out the search results            
         #     return(results)
-
-#%%

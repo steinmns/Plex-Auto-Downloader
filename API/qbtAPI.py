@@ -7,7 +7,6 @@ GLOBAL_version = '0.0.1'
 class qbittorrent(object):
     # Setting up the client property
     client = Client(host='66.161.179.39:55440', username='admin', password='adminadmin')
-
     # Constructor to output information for the program 
     def __init__(self):
         print('----------------------------- \n Plex Auto Downloader v%s \n----------------------------- \n' % GLOBAL_version)
@@ -40,19 +39,19 @@ class qbittorrent(object):
     def search(self, search_term=None, num_results=5):
         # Fetch and list the categories available to search for
         categories = self.client.search_categories(plugin_name='all')
-        print('\nList of available categories:')
-        for i in categories:
-            if i != '':
-                print('- '+i)
+        #print('\nList of available categories:')
+        #for i in categories:
+            #if i != '':
+                #print('- '+i)
 
         # Begin a search_job with a specific search_term and use 'all' available plugins and categories
         search_job = self.client.search.start(pattern=search_term, plugins='all', category='Movies')
 
         # Parse for search_id
-        search_id = search_job['id']
+        #search_id = search_job['id']
 
         # Debugging to see what the search_id is returned as
-        print('\nSearch ID of search term "%s" is: %s' % (search_term, search_id))
+        #print('\nSearch ID of search term "%s" is: %s' % (search_term, search_id))
         print(search_job.status()[0].status)
 
         # Let search continue until results populate
@@ -72,3 +71,8 @@ class qbittorrent(object):
         else:
             # Else print out the search results            
             return(results)
+
+
+    def startTorrent(self, url, path=None):
+        self.client.torrents_add(url)
+        print("Starting Torrent...")

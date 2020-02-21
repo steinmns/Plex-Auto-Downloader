@@ -4,6 +4,18 @@
 # Dependencies to install:
 # pip install qbittorrent-api
 from API.qbtAPI import qbittorrent
+from PyQt5 import QtWidgets, QtCore, uic
+from PyQt5.QtWidgets import QApplication
+import sys
+
+from UI_Classes.SearchClass import Search_Win
+
+#Initialize UI
+
+#app = QApplication(sys.argv)    #System configs
+#search_window = Search_Win()
+#search_window.show()  #Displays the window
+#sys.exit(app.exec_()) #Ensures clean exit when user closes window
 
 # Create an object 'qbit' of class qbittorrent
 qbit = qbittorrent()
